@@ -142,9 +142,9 @@ STATICFILES_DIRS = (
     os.path.join(CORE_DIR, 'static'),
 )
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
 GEOIP_PATH = os.path.join(CORE_DIR,'core/geoip')
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 #############################################################
 #############################################################
 
