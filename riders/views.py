@@ -28,7 +28,7 @@ def book_a_ride_view(request):
     return render(request, template, context)
 
 
-
+from django.contrib.auth.decorators import login_required
 def riders_list_view(request):
     pending_riders = Ride.objects.filter(status=1)# Pending riders
     active_riders = Ride.objects.filter(status=3)# Active Riders

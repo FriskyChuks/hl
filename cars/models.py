@@ -139,3 +139,16 @@ class BankAccountInformation(models.Model):
 
 	def __str__(self):
 		return f"{self.account_name} || {self.account_number}|| {self.bank_name}"
+
+
+class DriverRequest(models.Model):
+	user            = models.OneToOneField(User, on_delete=models.CASCADE, blank=True, null=True)
+	valid_licence	= models.BooleanField(default=False)
+	licence_exp_date = models.DateField()
+	comments		= models.TextField(max_length=500)
+
+	def __str__(self):
+		if self.valid_licence:
+			return f"{self.user.first_name} {self.user.last_name} || Has a valid Licence"
+		else:
+			return f"{self.user.first_name} {self.user.last_name} || Does not have a valid Licence"

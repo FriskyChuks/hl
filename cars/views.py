@@ -3,10 +3,11 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.views.generic import ListView, DetailView
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 from accounts.models import User
 
-from .models import Car, RideServiceClass, CarOwnerDriverRegister, BankAccountInformation
+from .models import Car, RideServiceClass, CarOwnerDriverRegister, BankAccountInformation, DriverRequest
 from .forms import CarOwnersDriversForm
 
 
@@ -36,6 +37,7 @@ def car_detail_view(request, id):
     return render(request, template, context)
 
 
+@login_required
 def car_owners_and_drivers_view(request):
     user = request.user
 
@@ -52,6 +54,7 @@ def car_owners_and_drivers_view(request):
     return render(request, template, context)
 
 
+@login_required
 def bank_account_info_view(request, user_id):
     user = User.objects.get(id=user_id)
     if request.method == 'POST':
@@ -71,3 +74,24 @@ def bank_account_info_view(request, user_id):
         return redirect("/")
     
     return render(request, 'cars/bank_account_info.html', {"user":user})
+
+
+@login_required
+def driver_request_view(request):
+    user_id = request.user.id
+    user = User.objects.get(id=user_id)
+    if request.method == 'POST':
+        valid_licence = request.POST.get('valid_licence')
+        licence_exp_date = request.POST.get('licence_exp_date')
+        comments = request.POST.get('comments')
+        form_obj = DriverRequest.objects.create(
+            user_id = user_id,
+            valid_licence = valid_licence,
+            licence_exp_date = licence_exp_date,
+            comments = comments
+        )
+        form_obj.save()
+        messages.success(request, 'Thanks for you request, we shall contact you soon!')
+        return redirect("/")
+    
+    return render(request, 'cars/driver_request.html', {"user":user})

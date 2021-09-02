@@ -1,10 +1,12 @@
-{% extends 'base.html' %}
+{% extends "layouts/base.html" %}
+
+{% block title %} Dashboard {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
 
 {% block content %}
-
-
-  <div class="container">
-
+    <hr>
     <div class="row">
       <div class="col-12">
         <div class="card mb-4">
@@ -31,8 +33,11 @@
                     <td>
                       <div class="d-flex px-2 py-1">
                         <div>
-                          <!-- <img src="....../static/media/image/team-2.jpg" class="avatar avatar-sm me-3"> -->
-                          <!-- <img src="{{ rider.rider.foto.url }}" alt="" class="avatar avatar-sm me-3"> -->
+                          {% if pending.rider.gender == 'male' %}
+                            <img src="/static/assets/img/team/male.jpg" class="avatar avatar-sm me-3">
+                          {% else %}
+                            <img src="/static/assets/img/team/female.png" class="avatar avatar-sm me-3">
+                          {% endif %}
                         </div>
                         <div class="d-flex flex-column justify-content-center">
                           <h6 class="mb-0 text-sm">{{ pending }}</h6>
@@ -123,8 +128,6 @@
         </div>
       </div>
     </div>
-    
-  </div>
 
 {% endblock content %}
 
