@@ -1,4 +1,4 @@
-src/core/settings/local.py
+core/settings/local.py
 
 # byte-compiled / optimized / DLL files
 __pycache__/
