@@ -132,7 +132,7 @@ STATIC_URL = '/static/'
 
 # Extra places for collectstatic to find static files.
 STATICFILES_DIRS = (
-    os.path.join(CORE_DIR, 'core/static'),
+    os.path.join(CORE_DIR, 'static'),
 )
 
 GEOIP_PATH = os.path.join(CORE_DIR,'core/geoip')
@@ -154,7 +154,7 @@ SECURE_FRAME_DENY               = True
 
 
 # Activate Django-Heroku.
-django_heroku.settings(locals())
+# django_heroku.settings(locals())
 
 from django.contrib.messages import constants as messages
 MESSAGE_TAGS = {
