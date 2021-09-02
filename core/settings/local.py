@@ -3,13 +3,14 @@
 Copyright (c) 2019 - present AppSeed.us
 """
 
+from pathlib import Path
 import os
-from decouple import config
-from unipath import Path
+import django_heroku
 import dj_database_url
+from decouple import config
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = Path(__file__).parent.parent.parent
+BASE_DIR = Path(__file__).parent.parent
 CORE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
@@ -59,7 +60,7 @@ ROOT_URLCONF = 'core.urls'
 # LOGOUT_REDIRECT_URL = '/login/'
 LOGIN_URL = '/login/'
 
-TEMPLATE_DIR = os.path.join(CORE_DIR, "core/templates")  # ROOT dir for templates
+TEMPLATE_DIR = os.path.join(BASE_DIR, "templates")  # ROOT dir for templates
 
 TEMPLATES = [
     {
@@ -131,24 +132,24 @@ STATIC_URL = '/static/'
 
 # Extra places for collectstatic to find static files.
 STATICFILES_DIRS = (
-    os.path.join(CORE_DIR, 'static'),
+    os.path.join(CORE_DIR, 'core/static'),
 )
 
 GEOIP_PATH = os.path.join(CORE_DIR,'core/geoip')
 #############################################################
 #############################################################
 
-# django_heroku.settings(locals())
+django_heroku.settings(locals())
 
-CORS_REPLACE_HTTPS_REFERER      = False
-HOST_SCHEME                     = "http://"
-SECURE_PROXY_SSL_HEADER         = None
-SECURE_SSL_REDIRECT             = False
-SESSION_COOKIE_SECURE           = False
-CSRF_COOKIE_SECURE              = False
-SECURE_HSTS_SECONDS             = None
-SECURE_HSTS_INCLUDE_SUBDOMAINS  = False
-SECURE_FRAME_DENY               = False
+# CORS_REPLACE_HTTPS_REFERER      = False
+# HOST_SCHEME                     = "http://"
+# SECURE_PROXY_SSL_HEADER         = None
+# SECURE_SSL_REDIRECT             = False
+# SESSION_COOKIE_SECURE           = False
+# CSRF_COOKIE_SECURE              = False
+# SECURE_HSTS_SECONDS             = None
+# SECURE_HSTS_INCLUDE_SUBDOMAINS  = False
+# SECURE_FRAME_DENY               = False
 
 from django.contrib.messages import constants as messages
 MESSAGE_TAGS = {

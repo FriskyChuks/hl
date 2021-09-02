@@ -10,7 +10,7 @@ import dj_database_url
 from decouple import config
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = Path(__file__).parent
+BASE_DIR = Path(__file__).parent.parent
 CORE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
@@ -62,7 +62,7 @@ ROOT_URLCONF = 'core.urls'
 # LOGOUT_REDIRECT_URL = '/login/'
 LOGIN_URL = '/login/'
 
-TEMPLATE_DIR = os.path.join(CORE_DIR, "core/templates")  # ROOT dir for templates
+TEMPLATE_DIR = os.path.join(BASE_DIR, "templates")  # ROOT dir for templates
 
 TEMPLATES = [
     {
