@@ -1,0 +1,130 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+  <div class="container">
+
+    <div class="row">
+      <div class="col-12">
+        <div class="card mb-4">
+          <div class="card-header pb-0">
+            <h6>Pending Riders</h6>
+          </div>
+          <div class="card-body px-0 pt-0 pb-2">
+            <div class="table-responsive p-0">
+              <table class="table align-items-center mb-0">
+                <thead>
+                  <tr>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Rider</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Pick-up Address</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Destination Address</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Class</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
+                    <!-- <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th> -->
+                    <th class="text-secondary opacity-7"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for pending in pending_riders %}
+                  <tr>
+                    <td>
+                      <div class="d-flex px-2 py-1">
+                        <div>
+                          <!-- <img src="....../static/media/image/team-2.jpg" class="avatar avatar-sm me-3"> -->
+                          <!-- <img src="{{ rider.rider.foto.url }}" alt="" class="avatar avatar-sm me-3"> -->
+                        </div>
+                        <div class="d-flex flex-column justify-content-center">
+                          <h6 class="mb-0 text-sm">{{ pending }}</h6>
+                          <p class="text-xs text-secondary mb-0">{{ pending.rider.email }}</p>
+                          <p class="text-xs text-secondary mb-0">{{ pending.rider.phone1 }}
+                            {% if pending.rider.phone2 %}; {{ pending.rider.phone2 }}{% endif %}
+                          </p>
+                        </div>
+                      </div>
+                    </td>
+                   <td>
+                      <p class="text-xs font-weight-bold mb-0">{{ pending.pickup_address }}</p>
+                    </td>
+                    <td class="text-xs font-weight-bold mb-0">
+                      <p class="text-xs font-weight-bold mb-0">{{ pending.destination }}</p>
+                      <!-- <span class="badge badge-sm bg-gradient-success">{{ rider.destination }}</span> -->
+                    </td>
+                    <td class="align-middle text-center">
+                      <span class="text-secondary text-xs font-weight-bold">{{ pending.service_class }}</span>
+                    </td>
+                    <td class="align-middle text-center">
+                      <span class="text-secondary text-xs font-weight-bold">Start</span>
+                    </td>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="card mb-4">
+          <div class="card-header pb-0">
+            <h6>Active Rides</h6>
+          </div>
+          <div class="card-body px-0 pt-0 pb-2">
+            <div class="table-responsive p-0">
+              <table class="table align-items-center mb-0">
+                <thead>
+                  <tr>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Rider</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Pick-up Address</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Destination Address</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Class</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
+                    <!-- <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th> -->
+                    <th class="text-secondary opacity-7"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for active in active_riders %}
+                  <tr>
+                    <td>
+                      <div class="d-flex px-2 py-1">
+                        <div>
+                          <!-- <img src="....../static/media/image/team-2.jpg" class="avatar avatar-sm me-3"> -->
+                          <!-- <img src="{{ rider.rider.foto.url }}" alt="" class="avatar avatar-sm me-3"> -->
+                        </div>
+                        <div class="d-flex flex-column justify-content-center">
+                          <h6 class="mb-0 text-sm">{{ active }}</h6>
+                          <p class="text-xs text-secondary mb-0">{{ active.rider.email }}</p>
+                          <p class="text-xs text-secondary mb-0">{{ active.rider.phone1 }}
+                            {% if active.rider.phone2 %}; {{ active.rider.phone2 }}{% endif %}
+                          </p>
+                        </div>
+                      </div>
+                    </td>
+                   <td>
+                      <p class="text-xs font-weight-bold mb-0">{{ active.pickup_address }}</p>
+                    </td>
+                    <td class="text-xs font-weight-bold mb-0">
+                      <p class="text-xs font-weight-bold mb-0">{{ active.destination }}</p>
+                      <!-- <span class="badge badge-sm bg-gradient-success">{{ rider.destination }}</span> -->
+                    </td>
+                    <td class="align-middle text-center">
+                      <span class="text-secondary text-xs font-weight-bold">{{ active.service_class }}</span>
+                    </td>
+                    <td class="align-middle text-center">
+                      <span class="text-secondary text-xs font-weight-bold">Start</span>
+                    </td>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+
+{% endblock content %}
+

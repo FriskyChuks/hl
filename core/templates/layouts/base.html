@@ -23,7 +23,7 @@
 <!-- Primary Meta Tags -->
 
 <title>
-    Django Volt Dashboard - {% block title %}{% endblock %} | AppSeed
+    HL - {% block title %}{% endblock %} | Riders
 </title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -70,6 +70,20 @@
 
       {% include 'includes/navigation.html' %}
 
+      <div>
+        {% if messages %}
+          {% for message in messages %}
+            <div class="alert {% if message.tags %} alert-{{ message.tags }} {% endif %} alert-dismissible fade show" role="alert">
+                <ul class="messages">
+                    <li>{{ message }}</li>
+                </ul>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    <!-- <span aria-hidden="true">&times;</span> -->
+                </button>
+            </div>
+          {% endfor %}
+        {% endif %}
+      </div>
       {% block content %}{% endblock content %} 
 
       {% include 'includes/settings-box.html' %}

@@ -1,0 +1,64 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Dashboard {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+<br>
+{% if find_user %}
+<div class="container">
+  <h3 class="text-success text-gradient">{{ captured_msg }}</h3>
+</div>
+{% else %}
+<section>
+    <div class="page-header section-height-75">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 d-flex flex-column">
+            <div class="card">
+              <div class="card-header pb-0 text-left bg-transparent">
+                <h6 style="color: green; "> 
+                    {{ msg }}                    
+                  </h6>
+                <h4 class="text-success text-gradient"> 
+                  {{ request.user.first_name }} {{ request.user.last_name }}
+                </h4>               
+              </div>
+              <div class="card-body">
+                <form id="registration-form" class="row g-3" method="POST" enctype="multipart/form-data">{% csrf_token %}
+                    <div class="col-md-12"><b>*Personal Info</b> </div>
+                    <div class="col-md-12">Image: {{ form.image }}</div>
+                    <div class="col-md-4">Gender: <input class="form-control" type="text" value="{{ request.user.gender|capfirst }}"> </div>
+                    <div class="col-md-4">Date of Birth: {{ form.date_of_birth }}</div>
+                    <div class="col-md-4">Marital Status: {{ form.marital_status }}</div>
+                    <h5></h5>
+                    <div class="col-md-12"><b>*Address Line</b> </div>
+                    <div class="col-md-4">Phone 1:<input class="form-control" type="text" value="{{ request.user.phone1 }}"> </div>
+                    <div class="col-md-4">Phone 2:<input class="form-control" type="text" value="{{ request.user.phone2 }}"> </div>
+                    <div class="col-md-4">Country: {{ form.nationality }}</div>
+                    <div class="col-md-4">State of Origin: {{ form.state_of_origin }}</div>
+                    <div class="col-md-8">L.G.A. of Origin: {{ form.lga_of_origin }}</div>
+                    <div class="col-md-12">Permanent Address: {{ form.permanent_address }}</div>
+                    <div class="col-md-4">State of Residence: {{ form.state_of_residence }}</div>
+                    <div class="col-md-8">L.G.A. of Residence: {{ form.lga_of_residence }}</div>
+                    <div class="col-md-12">Residential Address: {{ form.address_of_residence }}</div>
+                    <h5></h5>
+                    <div class="col-md-12"><b>*Next of Kin Details</b> </div>
+                    <div class="col-md-12">Fullname: {{ form.next_of_kin }}</div>
+                    <div class="col-md-6">Relationship {{ form.next_of_kin_relationship }}</div>
+                    <div class="col-md-6">Phone: {{ form.phone }}</div>
+                    <div class="col-md-12">Address: {{ form.address }}</div>
+                    <div class="col-md-12"><input type="submit" class="btn btn-success", value="submit"></div>
+                </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endif %}
+
+{% endblock content %}

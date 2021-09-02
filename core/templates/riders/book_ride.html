@@ -1,0 +1,48 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Dashboard {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+<hr>
+    <div class="row g-2">
+      <div class="col-md-4">
+                  <form role="form text-left" method="post" action="">{% csrf_token %}
+                    <h6 style="color: green; "> 
+                      {{ msg }}
+                    </h6>
+                    <label>Select Class</label>
+                    <div>
+                      {{ form.service_class }}
+                    </div>
+                    <br>
+                    <label>Pickup Address</label>
+                    <div>
+                      {{ form.pickup_address }}
+                    </div>
+                    <br>
+                    <label>Destination</label>
+                    <div>
+                      {{ form.destination }}
+                    </div>
+                    <!-- <label>Estimated Distance (in Km)</label> -->
+                    <div>
+                      {{ form.distance }}
+                    </div>
+                    <br>
+                    <button class="text-success text-gradient font-weight-bold">Click to Book Now</button>                 
+                  </form>
+      </div>
+
+      
+      <div class="col-md-8">
+
+      </div>
+      
+    </div>
+</div>
+
+{% endblock content %}
+

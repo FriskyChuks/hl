@@ -8,6 +8,8 @@ from django.urls import path, include  # add this
 
 urlpatterns = [
     path('admin/', admin.site.urls),          # Django admin route
-    path("", include("authentication.urls")), # Auth routes - login / register
-    path("", include("app.urls"))             # UI Kits Html files
+    path("", include("accounts.urls")), # Auth routes - login / register
+    path("cars/", include("cars.urls")),            # UI Kits Html files
+    path("riders/", include("riders.urls")), # Auth routes - login / register
+    # path("app", include("app.urls"))             # UI Kits Html files
 ]
