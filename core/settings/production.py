@@ -3,11 +3,11 @@
 Copyright (c) 2019 - present AppSeed.us
 """
 
+from pathlib import Path
 import os
-from decouple import config
-from unipath import Path
 import django_heroku
 import dj_database_url
+from decouple import config
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = Path(__file__).parent.parent
@@ -91,10 +91,10 @@ DATABASES = {
         'NAME'  : 'db.sqlite3',
     }
 }
-import dj_database_url
-db_from_env = dj_database_url.config()
-DATABASES['default'].update(db_from_env)
-DATABASES['default']['CONN_MAX-AGE'] = 500
+# import dj_database_url
+# db_from_env = dj_database_url.config()
+# DATABASES['default'].update(db_from_env)
+# DATABASES['default']['CONN_MAX-AGE'] = 500
 
 
 # Password validation
