@@ -110,14 +110,15 @@ class SignUpForm(forms.ModelForm):
 
 	class Meta:
 		model = User
-		fields = ('first_name', 'last_name','other_names', 'email','phone1')
+		fields = ('first_name', 'last_name','other_names', 'email','phone1','gender')
 
 		widgets = {
 		'first_name': forms.TextInput(attrs={'class': 'form-control'}),
 		'last_name': forms.TextInput(attrs={'class': 'form-control'}),
 		'other_names': forms.TextInput(attrs={'class': 'form-control'}),
 		'email': forms.EmailInput(attrs={'class': 'form-control'}),	
-		'phone1': forms.NumberInput(attrs={'class': 'form-control'}),		
+		'phone1': forms.NumberInput(attrs={'class': 'form-control'}),
+		'gender': forms.Select(attrs={'class': 'form-control'}),		
         }
 
 	def clean_password2(self):

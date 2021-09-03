@@ -4,7 +4,7 @@ from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
-
+from accounts.models import User
 from cars.models import Car, CarOwnerDriverRegister, BankAccountInformation
 
 from .forms import LoginForm, SignUpForm
@@ -53,9 +53,23 @@ def login_view(request):
                     else:
                         return redirect("/")
             else:    
-                msg = 'Invalid credentials'    
-        else:
-            msg = 'Wrong login credentials!'    
+                msg = 'Not Ok' 
+
+        email = form.cleaned_data.get("email")
+        password = form.cleaned_data.get("password")
+        user = authenticate(email=email, password=password)   
+        qs = User.objects.filter(email=email)
+        if len(qs) < 1:
+            msg = 'This User does not exist!'
+        
+        try:
+            user = User.objects.get(email=email)
+        except:
+            user = None
+        if user is not None and not user.check_password(password):
+            msg = 'Wrong Password'
+        elif user is None:
+            pass    
 
     return render(request, "accounts/login.html", {"form": form, "msg" : msg})
 
@@ -84,6 +98,13 @@ def register_user(request):
         form = SignUpForm()
 
     return render(request, "accounts/register.html", {"form": form, "msg" : msg, "success" : success })
+
+
+def account_setting_view(request, user_id):
+    user = User.objects.get(id=user_id)
+    template = 'accounts/setting.html'
+    context = {"user":user}
+    return render(request, template, context)
 
 
 def logout_view(request):

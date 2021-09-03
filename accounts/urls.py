@@ -4,12 +4,13 @@ Copyright (c) 2019 - present AppSeed.us
 """
 
 from django.urls import path
-from .views import login_view, register_user, home_view, logout_view
+from .views import login_view, register_user, home_view, logout_view, account_setting_view
 # from django.contrib.auth.views import LogoutView
 
 urlpatterns = [
     path('login/', login_view, name="login"),
     path('register/', register_user, name="register"),
     path('logout/', logout_view, name='logout'),
-    path("", home_view, name="home")
+    path("", home_view, name="home"),
+    path("account_setting/<user_id>/", account_setting_view, name="account_setting")
 ]
