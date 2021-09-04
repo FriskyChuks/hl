@@ -1,0 +1,22 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Dashboard {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+<hr>
+<form action="" method="POST">{% csrf_token %}
+    Name: {{obj.user.first_name}} {{obj.user.last_name}} {{obj.user.other_names}} <br>
+    Has Valid Licence: {% if obj.valid_licence == "True" %} Yes {% else %} No {% endif %}  <br>
+    Comments: {{ obj.comments }} <br>
+    Application Date: {{ obj.date_created }} <br>
+    <br>
+    <button>
+        {% if obj.status == 'pending' %} Invite for Interview {% else %}Click to Approve{% endif %}
+    </button>
+        
+</form>
+
+{% endblock content %}

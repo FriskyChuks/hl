@@ -146,6 +146,9 @@ class DriverRequest(models.Model):
 	valid_licence	= models.BooleanField(default=False)
 	licence_exp_date = models.DateField()
 	comments		= models.TextField(max_length=500)
+	status 			= models.CharField(max_length=9, default='pending')
+	date_created	= models.DateTimeField(auto_now_add=True, auto_now=False)
+	updated			= models.DateTimeField(auto_now_add=False, auto_now=True)
 
 	def __str__(self):
 		if self.valid_licence:

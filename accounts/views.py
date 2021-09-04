@@ -1,10 +1,12 @@
+from django.urls import reverse_lazy
+from django.contrib.auth.views import PasswordChangeView, PasswordResetDoneView
 from django.shortcuts import render, HttpResponseRedirect, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
-from accounts.models import User
+from .models import User
 from cars.models import Car, CarOwnerDriverRegister, BankAccountInformation
 
 from .forms import LoginForm, SignUpForm
@@ -71,7 +73,7 @@ def login_view(request):
         elif user is None:
             pass    
 
-    return render(request, "accounts/login.html", {"form": form, "msg" : msg})
+    return render(request, "account/login.html", {"form": form, "msg" : msg})
 
 
 
@@ -97,14 +99,23 @@ def register_user(request):
     else:
         form = SignUpForm()
 
-    return render(request, "accounts/register.html", {"form": form, "msg" : msg, "success" : success })
+    return render(request, "account/register.html", {"form": form, "msg" : msg, "success" : success })
 
 
+@login_required
 def account_setting_view(request, user_id):
     user = User.objects.get(id=user_id)
-    template = 'accounts/setting.html'
+    template = 'account/setting.html'
     context = {"user":user}
     return render(request, template, context)
+
+
+class MyPasswordChangeView(PasswordChangeView):
+    template_name = 'account/passwords/change.html'
+    success_url = reverse_lazy('password_change_done')
+
+class MyPasswordResetDoneView(PasswordResetDoneView):
+    template_name = 'account/passwords/reset_done.html'
 
 
 def logout_view(request):

@@ -95,3 +95,28 @@ def driver_request_view(request):
         return redirect("/")
     
     return render(request, 'cars/driver_request.html', {"user":user})
+
+
+def pending_drivers_request_view(request):
+    pending_requests = DriverRequest.objects.filter(status='pending') | DriverRequest.objects.filter(status='interview')
+
+    template = 'cars/pending_drivers_request.html'
+    context = {"pending_requests":pending_requests}
+    return render(request, template, context)
+
+
+def drivers_request_detail_view(request, id):
+    obj = DriverRequest.objects.get(id=id)
+    if request.method == 'POST':
+        if obj.status == 'pending':
+            obj_update = DriverRequest.objects.filter(id=id).update(status='interview')
+            return redirect('pending_driver_request')
+        else:
+            obj_update = DriverRequest.objects.filter(id=id).update(status='approved')
+            driver_id = obj.user.id
+            user_updated = User.objects.filter(id=driver_id).update(is_a_driver=True)
+            return redirect('pending_driver_request')
+
+    template = 'cars/driver_request_detail.html'
+    context = {"obj":obj}
+    return render(request, template, context)

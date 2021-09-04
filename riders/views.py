@@ -39,3 +39,6 @@ def riders_list_view(request):
     return render(request, template, context)
 
 
+
+
+

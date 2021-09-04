@@ -1,0 +1,16 @@
+{% extends "layouts/base.html" %}
+{% block title %} Change successful {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+<div class='row'>
+    <div class="col-12 text-center py-5">
+      <h1 class='my-5 py-5'>Password successfully changed!</h1>
+      <a href="{% url 'home' %}"><button><h1>Ok</h1></button></a>
+    </div>
+</div>
+
+{% endblock content %}
