@@ -117,6 +117,8 @@ class MyPasswordChangeView(PasswordChangeView):
 class MyPasswordResetDoneView(PasswordResetDoneView):
     template_name = 'account/passwords/reset_done.html'
 
+def about_us_view(request):
+    return render(request, 'about_us.html', {})
 
 def logout_view(request):
     logout(request)

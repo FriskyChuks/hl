@@ -6,6 +6,7 @@ from .views import(
     login_view,
     register_user,
     home_view,
+    about_us_view,
     logout_view,
     account_setting_view, 
     MyPasswordChangeView,
@@ -18,6 +19,7 @@ urlpatterns = [
     path('register/', register_user, name="register"),
     path('logout/', logout_view, name='logout'),
     path("", home_view, name="home"),
+    path("about_us", about_us_view, name="about_us"),
     path("account_setting/<user_id>/", account_setting_view, name="account_setting"),
 
     # PASSWORD MANAGEMENT

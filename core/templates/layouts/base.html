@@ -69,7 +69,7 @@
     <main class="content">
 
       {% include 'includes/navigation.html' %}
-
+      {% include 'includes/task.html' %}
       <div>
         {% if messages %}
           {% for message in messages %}
@@ -84,7 +84,7 @@
           {% endfor %}
         {% endif %}
       </div>
-      {% block content %}{% endblock content %} 
+      {% block content %} {% endblock content %} 
 
       {% include 'includes/settings-box.html' %}
 

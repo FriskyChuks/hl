@@ -1,0 +1,215 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Dashboard {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+
+{% block content %}
+<style>
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+  }
+  
+  html {
+    box-sizing: border-box;
+  }
+  
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+  
+  .column {
+    float: left;
+    width: 33.3%;
+    margin-bottom: 16px;
+    padding: 0 8px;
+  }
+  
+  .card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    margin: 8px;
+  }
+  
+  .about-section {
+    padding: 50px;
+    text-align: center;
+    background-color: #474e5d;
+    color: white;
+  }
+  
+  .container {
+    padding: 0 16px;
+  }
+  
+  .container::after, .row::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+  
+  .title {
+    color: grey;
+  }
+  
+  .button {
+    border: none;
+    outline: 0;
+    display: inline-block;
+    padding: 8px;
+    color: white;
+    background-color: #000;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+  }
+  
+  .button:hover {
+    background-color: #555;
+  }
+  
+  @media screen and (max-width: 650px) {
+    .column {
+      width: 100%;
+      display: block;
+    }
+  }
+  </style>
+<hr>
+
+<div class="about-section">
+  <h1>Hada Logistics</h1>
+  <p>Hadad Logistics is a fast-growing logistic business, with it’s operating base in Abuja, Nigeria.                Hadad Logistics is a subsidiary of Hadad Business Group, which was founded in 2016.                                              At Hadad Logistics, we see it as part of our duty to help co-ordinate all your logistic needs, by providing our clients with swift, efficient, and reliable services, with our cutting-edge technology.
+    At Hadad Logistics, we make customers satisfaction our priority. We handle all of your logistic needs and make appropriate adjustments as schedules shift.
+     Transportation, chauffeured vehicles for rent, taxi cab services, chauffeur for hire, errand services, and trucking services are only a few services we provide.
+    </p>
+  <p>Our Services</p>
+  <ol>
+    <li>City Lift; <br>
+      This I the fastest way to get around town. Our pick-ups and drop-offs are simple, safe, fashionable, and convenient. If you think you would be making several stops, you can book for an hour or more. 
+    </li><br>
+    <li>
+      Airport eXpress/ Airport trip; <br>
+      This service will bring you to and from the airport quickly and safe. Our drivers are dependable, productive, and punctual. They use a flight tracking device to ensure that they get you to the airport on time, and are ready to meet you as soon as you arrive, even at odd hours of the day.
+    </li><br>
+    <li>
+      Corporate day;<br>
+      This corporate service is appropriate for professionals in corporate organizations who have a long to-do list that needs to be completed in a single day. This service also provides you a licensed chauffeur for 10hrs. 
+    </li><br>
+    <li>
+      Bon Voyage: <br>
+      This is what you need if you are looking to go on a road trip with seasoned drivers who know the best and safest routes. Our destination spans through various states in the country. To schedule this service, give us a call right now.
+    </li><br>
+    <li>
+      Kiddies Ride. <br>
+      This is a monthly bundle for parents who want a safe, punctual, convenient, and dependable way to get their child or children to and from school. You can also schedule any other appoint for your child or children. During rides, educative audio materials and kiddies songs will be played to keep the ride fun and educative. This service also provides you with an optional security personnel who is experienced and well trained, and optional meal plan.
+    </li><br>
+    <li>
+      Events: <br>
+      Are you looking for a way to get around for your wedding, birthday party, bachelor party, or some other events?                                  									       With our Comfort, Executive or Luxury services we’ve got you covered. We’re just a phone call away.
+    </li><br>
+    <li>
+      Errand Services: <br>
+      We provide fast, secure, effective and dependable errand services. With the aid of our dispatch bikes and up to date technologies, we take care of your pick-up and delivery needs in a timely manner. 
+    </li><br>
+    <li>
+      Trucking: <br>
+      We transport your Cargo and bulk services from point A-B with our trucking services. We are dependable, secure and effective. You can count on us to stay consistent in our timely delivery.
+    </li><br>
+    <li>
+      Chauffeur services: <br>
+      Are you in need of a chauffeur for a day or more? Then this service has got you covered with our trained and experienced chauffeurs. 
+    </li>
+  </ol>
+</div>
+<br>
+<!-- CATEGORIES -->
+<h2 style="text-align:center">CATEGORIES</h2>
+<div class="row">
+  <div class="column">
+    <div class="card">
+      <img src="/static/assets/img/cars/1.jpg" alt="Mike" style="width:100%">
+      <div class="container">
+        <h2>Comfort</h2>
+        <p class="title">Toyota Corolla</p>
+        <p>You deserve the best; Confort at it cheapest rate in town</p>
+        <!-- <p>mike@example.com</p> -->
+        <p><button class="button">Book Now</button></p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="column">
+    <div class="card">
+      <img src="/static/assets/img/cars/1.jpg" alt="John" style="width:100%">
+      <div class="container">
+        <h2>Executive</h2>
+        <p class="title">Mini Copper</p>
+        <p>You deserve the best; Ride with ease on our Executive ride</p>
+        <!-- <p>john@example.com</p> -->
+        <p><button class="button">Book Now</button></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="column">
+    <div class="card">
+      <img src="/static/assets/img/cars/1.jpg" alt="Jane" style="width:100%">
+      <div class="container">
+        <h2>Luxury</h2>
+        <p class="title">LX570</p>
+        <p>You deserve the best; Get luxury at its best with us</p>
+        <!-- <p>jane@example.com</p> -->
+        <p><button class="button">Contact</button></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br>
+<!-- OUT TEAM -->
+<h2 style="text-align:center">Our Team</h2>
+<div class="row">
+  <div class="column">
+    <div class="card">
+      <img src="/static/assets/img/team/profile-picture-3.jpg" alt="Jane" style="width:100%">
+      <div class="container">
+        <h2>Jane Doe</h2>
+        <p class="title">CEO & Founder</p>
+        <p>Some text that describes me.</p>
+        <p>jane@example.com</p>
+        <p><button class="button">Contact</button></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="column">
+    <div class="card">
+      <img src="/static/assets/img/team/profile-picture-1.jpg" alt="Mike" style="width:100%">
+      <div class="container">
+        <h2>Mike Ross</h2>
+        <p class="title">Art Director</p>
+        <p>Some text that describes me.</p>
+        <p>mike@example.com</p>
+        <p><button class="button">Contact</button></p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="column">
+    <div class="card">
+      <img src="/static/assets/img/team/profile-picture-4.jpg" alt="John" style="width:100%">
+      <div class="container">
+        <h2>John Doe</h2>
+        <p class="title">Designer</p>
+        <p>Some text that describes me.</p>
+        <p>john@example.com</p>
+        <p><button class="button">Contact</button></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}
