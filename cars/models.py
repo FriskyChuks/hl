@@ -1,66 +1,67 @@
 from django.db import models
+from django.utils import timezone
 
 from accounts.models import User
 
 
 COUNTRY = (
-		('nigeria', 'Nigeria'),
-	)
+        ('nigeria', 'Nigeria'),
+    )
 
 
 STATE = (
-			('lagos', 'Lagos'),
-			('nasarawa', 'Nasarawa'),
-			('abia', 'Abia'),
-			('adamawa', 'Adamawa'),
-			('anambra', 'Anambra'),
-			('akwa-ibom', 'Akwa-Ibom'),
-			('delta', 'Delta'),
-			('edo', 'Edo'),
-			('enugu', 'Enugu'),
-			('jigawa', 'Jigawa'),
-			('ondo', 'Ondo'),
-			('imo', 'Imo'),
-			('bauchi', 'Bauchi'),
-			('plateau', 'Plateau'),
-			('ogun', 'Ogun'),
-			('kaduna', 'Kaduna'),
-			('katsina', 'Katsina'),
-			('sokoto', 'Sokoto'),
-			('osun', 'Osun'),
-			('benue', 'Benue'),
-			('kogi', 'Kogi'),
-			('fct(Abuja)', 'FCT(Abuja)'),
-			('ebonyi', 'Ebonyi'),
-			('cross-rivers', 'Cross-Rivers'),
-		)
+            ('lagos', 'Lagos'),
+            ('nasarawa', 'Nasarawa'),
+            ('abia', 'Abia'),
+            ('adamawa', 'Adamawa'),
+            ('anambra', 'Anambra'),
+            ('akwa-ibom', 'Akwa-Ibom'),
+            ('delta', 'Delta'),
+            ('edo', 'Edo'),
+            ('enugu', 'Enugu'),
+            ('jigawa', 'Jigawa'),
+            ('ondo', 'Ondo'),
+            ('imo', 'Imo'),
+            ('bauchi', 'Bauchi'),
+            ('plateau', 'Plateau'),
+            ('ogun', 'Ogun'),
+            ('kaduna', 'Kaduna'),
+            ('katsina', 'Katsina'),
+            ('sokoto', 'Sokoto'),
+            ('osun', 'Osun'),
+            ('benue', 'Benue'),
+            ('kogi', 'Kogi'),
+            ('fct(Abuja)', 'FCT(Abuja)'),
+            ('ebonyi', 'Ebonyi'),
+            ('cross-rivers', 'Cross-Rivers'),
+        )
 
 RELATIONSHIP = (
-		('spouse', 'Spouse'),
-		('brother', 'Brother'),
-		('sister', 'Sister'),
-		('father', 'Father'),
-		('mother', 'Mother'),
-		('cousin', 'Cousin'),
-		('nephew', 'Nephew'),
-		('niece', 'Niece'),
-		('uncle', 'Uncle'),
-		('aunt', 'Aunt'),
-		('neighbour', 'Neighbour'),
-		('son', 'Son'),
-		('daughter', 'Daughter'),
-		('son', 'Son'),
-	)
+        ('spouse', 'Spouse'),
+        ('brother', 'Brother'),
+        ('sister', 'Sister'),
+        ('father', 'Father'),
+        ('mother', 'Mother'),
+        ('cousin', 'Cousin'),
+        ('nephew', 'Nephew'),
+        ('niece', 'Niece'),
+        ('uncle', 'Uncle'),
+        ('aunt', 'Aunt'),
+        ('neighbour', 'Neighbour'),
+        ('son', 'Son'),
+        ('daughter', 'Daughter'),
+        ('son', 'Son'),
+    )
 
 MARITAL_STATUS = (
-		('single', 'Single'),
-		('married', 'Married'),
-		('divorced', 'Divorced'),
-	)
+        ('single', 'Single'),
+        ('married', 'Married'),
+        ('divorced', 'Divorced'),
+    )
 
 ACCOUNT_TYPE = (
-	('1', 'Current'),
-	('2', 'Savings'),
+    ('1', 'Current'),
+    ('2', 'Savings'),
 )
 
 
@@ -93,12 +94,20 @@ class Car(models.Model):
     service_class = models.ForeignKey(RideServiceClass, on_delete=models.CASCADE, blank=True, null=True)
     owner = models.ForeignKey(User, related_name='owner', on_delete=models.CASCADE, blank=True, null=True)
     active = models.BooleanField(default=True)
+    is_booked = models.BooleanField(default=False)
     date_created = models.DateTimeField(auto_now_add=True, auto_now=False)
     updated = models.DateTimeField(auto_now_add=False, auto_now=True)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):
         return f"{self.brand} {self.model}"
+
+
+class CarReservation(models.Model):
+    check_in = models.DateField(default=timezone.now)
+    check_out = models.DateField()
+    car = models.ForeignKey(Car, on_delete = models.CASCADE)
+    rider = models.ForeignKey(User, on_delete= models.CASCADE)
 
 
 class CarOwnerDriverRegister(models.Model):
@@ -127,31 +136,31 @@ class CarOwnerDriverRegister(models.Model):
 
 
 class BankAccountInformation(models.Model):
-	user            = models.OneToOneField(User, on_delete=models.CASCADE, blank=True, null=True)
-	account_name	= models.CharField(max_length=100)
-	account_type	= models.CharField(max_length=20, choices=ACCOUNT_TYPE)
-	bank_name		= models.CharField(max_length=50)
-	account_number	= models.CharField(max_length=10)
-	date_created    = models.DateTimeField(auto_now_add=True, auto_now=False)
-	active = models.BooleanField(default=True)
-	date_created = models.DateTimeField(auto_now_add=True, auto_now=False)
-	updated = models.DateTimeField(auto_now_add=False, auto_now=True)
+    user            = models.OneToOneField(User, on_delete=models.CASCADE, blank=True, null=True)
+    account_name	= models.CharField(max_length=100)
+    account_type	= models.CharField(max_length=20, choices=ACCOUNT_TYPE)
+    bank_name		= models.CharField(max_length=50)
+    account_number	= models.CharField(max_length=10)
+    date_created    = models.DateTimeField(auto_now_add=True, auto_now=False)
+    active = models.BooleanField(default=True)
+    date_created = models.DateTimeField(auto_now_add=True, auto_now=False)
+    updated = models.DateTimeField(auto_now_add=False, auto_now=True)
 
-	def __str__(self):
-		return f"{self.account_name} || {self.account_number}|| {self.bank_name}"
+    def __str__(self):
+        return f"{self.account_name} || {self.account_number}|| {self.bank_name}"
 
 
 class DriverRequest(models.Model):
-	user            = models.OneToOneField(User, on_delete=models.CASCADE, blank=True, null=True)
-	valid_licence	= models.BooleanField(default=False)
-	licence_exp_date = models.DateField()
-	comments		= models.TextField(max_length=500)
-	status 			= models.CharField(max_length=9, default='pending')
-	date_created	= models.DateTimeField(auto_now_add=True, auto_now=False)
-	updated			= models.DateTimeField(auto_now_add=False, auto_now=True)
+    user            = models.OneToOneField(User, on_delete=models.CASCADE, blank=True, null=True)
+    valid_licence	= models.BooleanField(default=False)
+    licence_exp_date = models.DateField()
+    comments		= models.TextField(max_length=500)
+    status 			= models.CharField(max_length=9, default='pending')
+    date_created	= models.DateTimeField(auto_now_add=True, auto_now=False)
+    updated			= models.DateTimeField(auto_now_add=False, auto_now=True)
 
-	def __str__(self):
-		if self.valid_licence:
-			return f"{self.user.first_name} {self.user.last_name} || Has a valid Licence"
-		else:
-			return f"{self.user.first_name} {self.user.last_name} || Does not have a valid Licence"
+    def __str__(self):
+        if self.valid_licence:
+            return f"{self.user.first_name} {self.user.last_name} || Has a valid Licence"
+        else:
+            return f"{self.user.first_name} {self.user.last_name} || Does not have a valid Licence"
