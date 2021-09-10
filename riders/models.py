@@ -17,6 +17,7 @@ class ServiceType(models.Model):
     service_type = models.CharField(max_length=50)
     description = models.TextField(null=True, blank=True)
     image = models.ImageField(null=True, blank=True, upload_to="cars/", default="cars/1.jpg")
+    active = models.BooleanField(default=True)
     created_by = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE)
     date_created = models.DateTimeField(auto_now_add=True, auto_now=False)
     updated = models.DateTimeField(auto_now_add=False, auto_now=True)
