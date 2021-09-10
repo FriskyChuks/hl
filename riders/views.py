@@ -52,7 +52,7 @@ def riders_list_view(request):
 
 
 def ride_service_type_list_view(request):
-    services = ServiceType.objects.all()
+    services = ServiceType.objects.filter(active=True)
 
     return render(request, 'riders/ride_service.html', {"services":services})
 

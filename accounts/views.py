@@ -16,7 +16,7 @@ from .forms import LoginForm, SignUpForm
 
 def home_view(request):
     cars = Car.objects.all()
-    services = ServiceType.objects.all()
+    services = ServiceType.objects.filter(active=True)
 
     template = 'dashboard.html'
     context = {"cars":cars, "services":services}
