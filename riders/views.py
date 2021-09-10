@@ -5,6 +5,7 @@ from geopy.distance import geodesic
 import folium
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+import datetime
 
 from accounts.models import User
 from .models import Ride, ServiceType
@@ -21,7 +22,8 @@ def book_a_ride_view(request, service_type_id):
         pickup_address = request.POST.get('pickup_address')
         destination=request.POST.get('destination')
         service_class = request.POST.get('service_class')
-        licence_no = request.POST.get('licence_no')
+        ride_date = request.POST.get('ride_date')
+        ride_time = request.POST.get('ride_time')
         comments = request.POST.get('comments')
         form_obj = Ride.objects.create(
             rider_id = user_id,
@@ -29,11 +31,13 @@ def book_a_ride_view(request, service_type_id):
             destination=destination,
             service_class_id = service_class,
             service_type_id=service_type_id,
+            ride_date=ride_date,
+            ride_time=ride_time,
             comments = comments
         )
         form_obj.save()
         messages.success(request, 'Your booking was successful')
-        return redirect('book_a_ride')
+        return redirect('/')
    
     template = 'riders/book_ride.html'
     context = {"service":service}

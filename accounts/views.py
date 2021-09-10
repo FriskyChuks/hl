@@ -97,7 +97,16 @@ def register_user(request):
             return redirect("/login")
 
         else:
-            msg = 'Form is not valid'    
+            raw_password = form.cleaned_data.get("password1")
+            li = []
+            for char in raw_password:
+                if char.isdigit():
+                   li.append(char)
+            if len(li) < 1:
+                msg = "Your password must contain at least 1 digit, 0-9."
+            if len(raw_password) < 6:
+                msg = 'password lenght must be greater than 6' 
+                # msg = 'Your password must contain at least 1 digit, 0-9.'   
     else:
         form = SignUpForm()
 
