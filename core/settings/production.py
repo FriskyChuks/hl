@@ -38,6 +38,7 @@ INSTALLED_APPS = [
 
     'accounts',
     'cars',
+    'drivers',
     'riders',
 ]
 
@@ -136,6 +137,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 STATIC_ROOT = os.path.join(CORE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
+MEDIA_URL = '/img/'
+
+MEDIA_ROOT = os.path.join(CORE_DIR, 'static', 'assets','img')
 
 # Extra places for collectstatic to find static files.
 STATICFILES_DIRS = (
@@ -169,3 +173,11 @@ from django.contrib.messages import constants as messages
 MESSAGE_TAGS = {
     messages.ERROR: 'danger',
 }
+
+# SMTP CONFIG
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'goodfriends.gfb@gmail.com'
+EMAIL_HOST_PASSWORD = ''

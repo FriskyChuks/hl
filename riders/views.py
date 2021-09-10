@@ -6,25 +6,37 @@ import folium
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
-from .models import Ride
+from accounts.models import User
+from .models import Ride, ServiceType
 from .forms import BookRideForm
 from .utils import get_geo, get_center_coordinates, get_zoom, get_ip_address
 
 
 @login_required
-def book_a_ride_view(request):
-    form = BookRideForm(request.POST or None)
-    msg = ""
-    if form.is_valid():
-        new_form = form.save(commit=False)
-        # destination_ = form.cleaned_data.get('destination')
-        new_form.rider_id = request.user.id
-        new_form.save()
+def book_a_ride_view(request, service_type_id):
+    service = ServiceType.objects.get(id=service_type_id)
+    user_id = request.user.id
+
+    if request.method == 'POST':
+        pickup_address = request.POST.get('pickup_address')
+        destination=request.POST.get('destination')
+        service_class = request.POST.get('service_class')
+        licence_no = request.POST.get('licence_no')
+        comments = request.POST.get('comments')
+        form_obj = Ride.objects.create(
+            rider_id = user_id,
+            pickup_address = pickup_address,
+            destination=destination,
+            service_class_id = service_class,
+            service_type_id=service_type_id,
+            comments = comments
+        )
+        form_obj.save()
         messages.success(request, 'Your booking was successful')
         return redirect('book_a_ride')
    
     template = 'riders/book_ride.html'
-    context = {"form":form, "msg":msg}
+    context = {"service":service}
     return render(request, template, context)
 
 
@@ -39,6 +51,16 @@ def riders_list_view(request):
     return render(request, template, context)
 
 
+def ride_service_type_list_view(request):
+    services = ServiceType.objects.all()
+
+    return render(request, 'riders/ride_service.html', {"services":services})
+
+
+def ride_service_type_detail_view(request, id):
+    service = ServiceType.objects.get(id=id)
+
+    return render(request, 'riders/ride_service_details.html', {"service":service})
 
 
 

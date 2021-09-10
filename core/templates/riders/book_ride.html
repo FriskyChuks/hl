@@ -7,41 +7,72 @@
 
 {% block content %}
 <hr>
-    <div class="row g-2">
-      <div class="col-md-4">
-                  <form role="form text-left" method="post" action="">{% csrf_token %}
-                    <h6 style="color: green; "> 
-                      {{ msg }}
-                    </h6>
-                    <label>Select Class</label>
-                    <div>
-                      {{ form.service_class }}
-                    </div>
-                    <br>
-                    <label>Pickup Address</label>
-                    <div>
-                      {{ form.pickup_address }}
-                    </div>
-                    <br>
-                    <label>Destination</label>
-                    <div>
-                      {{ form.destination }}
-                    </div>
-                    <!-- <label>Estimated Distance (in Km)</label> -->
-                    <div>
-                      {{ form.distance }}
-                    </div>
-                    <br>
-                    <button class="text-success text-gradient font-weight-bold">Click to Book Now</button>                 
-                  </form>
+<div class="row">
+  <div class="col-sm-12">  
+    <div class="card">
+      <div class="card-header">
+        <h5>You're Requesting for {{ service.service_type }}; <small>Click <a href="{% url 'ride_service_type' %}">here</a> for <a href="{% url 'ride_service_type' %}">OTHER SERVICES</a></small></h5>
       </div>
+        <div class="container">
+            <div class="row g-2">
+              <div class="col-md-8">
+                <br>
+                <form method="POST"  class="row g-3">{% csrf_token %}
+                  <div class="col-md-6">
+                      <label for="validationDefault04" class="form-label">Service Class</label>
+                      <select class="form-select" id="validationDefault04" name="service_class" required>
+                          <option selected disabled value="">Choose a class...</option>
+                          <option value="1">Comfort</option>
+                          <option value="2">Executive</option>
+                          <option value="3">Luxury</option>
+                      </select>
+                  </div>
+                  <div class="col-md-3">
+                    <label for="validationDefault02" class="form-label">Pickup Date</label>
+                    <input type="date" class="form-control" id="validationDefault02" name="ride_date" required>
+                  </div>
+                  <div class="col-md-3">
+                    <label for="validationDefault02" class="form-label">Pickup Time</label>
+                    <input type="time" class="form-control" id="validationDefault02" name="ride_time" required>
+                  </div>
+                  <br>
+                  <div>
+                    <label for="validationDefault02" class="form-label">Pickup Address</label>
+                    <input type="text" class="form-control" id="validationDefault02" name="pickup_address" required>
+                  </div>
+                  <br>
+                  <div>
+                      <label for="validationDefault02" class="form-label">Destination Address</label>
+                      <input type="text" class="form-control" id="validationDefault02" name="destination" required>
+                  </div>
+                  <br>
+                  <div>
+                    <label for="validationDefault03" class="form-label">Comments (optional)</label>
+                    <textarea name="comments" id="validationDefault03" class="form-control" cols="30" rows="6" placeholder="Add a comment"></textarea>
+                  </div>
+                  <br>
+                  <div class="col-12">
+                    <button class="btn btn-success" type="submit">Submit Request</button>
+                  </div>
+                  <br>
+                </form>     
+              </div>
+              <div class="col-md-1">
+          
+              </div>
+              <div class="col-md-3">
+                <br>
+                <h4>{{ service.service_type }}</h4>
+                <img src="{{ service.image.url }}" alt="">
+                <br><br>
+                {{ service.description }}
+              </div>
+              
+            </div>
+        </div>
 
-      
-      <div class="col-md-8">
-
-      </div>
-      
     </div>
+  </div>    
 </div>
 
 {% endblock content %}

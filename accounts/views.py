@@ -6,18 +6,20 @@ from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
-from .models import User
-from cars.models import Car, CarOwnerDriverRegister, BankAccountInformation
+from riders.models import ServiceType
+from drivers.models import CarOwnerDriverRegister, BankAccountInformation
+from cars.models import Car
 
+from .models import User
 from .forms import LoginForm, SignUpForm
 
 
-@login_required(login_url="/login/")
 def home_view(request):
     cars = Car.objects.all()
+    services = ServiceType.objects.all()
 
     template = 'dashboard.html'
-    context = {"cars":cars}
+    context = {"cars":cars, "services":services}
     return render(request, template, context)
 
 
@@ -110,12 +112,12 @@ def account_setting_view(request, user_id):
     return render(request, template, context)
 
 
-class MyPasswordChangeView(PasswordChangeView):
-    template_name = 'account/passwords/change.html'
-    success_url = reverse_lazy('password_change_done')
+# class MyPasswordChangeView(PasswordChangeView):
+#     template_name = 'account/passwords/change.html'
+#     success_url = reverse_lazy('password_change_done')
 
-class MyPasswordResetDoneView(PasswordResetDoneView):
-    template_name = 'account/passwords/reset_done.html'
+# class MyPasswordResetDoneView(PasswordResetDoneView):
+#     template_name = 'account/passwords/reset_done.html'
 
 def about_us_view(request):
     return render(request, 'about_us.html', {})

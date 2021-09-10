@@ -71,7 +71,7 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractBaseUser):
-    foto			= models.ImageField(null=True, blank=True, upload_to="image/", default="image/male.jpg")
+    image           = models.ImageField(null=True, blank=True, upload_to="users/")
     email 			= models.EmailField(max_length=255, unique=True, blank=True, null=True)
     first_name		= models.CharField(max_length=225)
     last_name		= models.CharField(max_length=225)
@@ -80,6 +80,7 @@ class User(AbstractBaseUser):
     phone2          = models.CharField(max_length=11, blank=True, null=True)
     gender          = models.CharField(max_length=10, choices=GENDER)
     active 			= models.BooleanField(default=True)
+    is_active 			= models.BooleanField(default=True)
     staff 			= models.BooleanField(default=False)
     is_a_driver 	= models.BooleanField(default=False)
     is_car_owner 	= models.BooleanField(default=False)
@@ -115,9 +116,9 @@ class User(AbstractBaseUser):
     def is_admin(self):
         return self.admin
 
-    @property
-    def is_active(self):
-        return self.active
+    # @property
+    # def is_active(self):
+    #     return self.active
 
     @property
     def driver(self):

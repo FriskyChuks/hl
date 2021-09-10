@@ -77,7 +77,7 @@
                                               Remember me
                                             </label>
                                         </div>
-                                        <div><a href="" class="small text-right">Lost password?</a></div>
+                                        <div><a href="{% url 'password_reset' %}" class="small text-right">Lost password?</a></div>
                                     </div>
                                 </div>
                                 {% if request.GET.next %}

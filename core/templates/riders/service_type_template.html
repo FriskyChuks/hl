@@ -1,0 +1,21 @@
+<div>
+    <h3>Our Services</h3>
+    <div class="row col-md-12">
+      {% for service in services %}
+          <div class="col-md-4">
+            <!-- card begins -->
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title"><a href="{% url 'book_a_ride' service_type_id=service.id %}">{{ service.service_type }}</a></h5>
+                    <!-- <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6> -->
+                    <p class="card-text">{{ service.description|truncatewords:15 }}</p>
+                    <a href="{{ service.get_absolute_url }}" class="card-link">read more</a>
+                    <a href="{% url 'book_a_ride' service_type_id=service.id %}" class="card-link">Book now</a>
+                </div>
+            </div>
+            <!-- card ends -->
+            <br>
+          </div>
+      {% endfor %}
+    </div>  
+</div>
