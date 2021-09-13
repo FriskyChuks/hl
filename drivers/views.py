@@ -4,8 +4,8 @@ from django.contrib.auth.decorators import login_required
 
 from accounts.models import User
 
-from .models import BankAccountInformation, DriverRequest, SitBackAndEarn
-from .forms import CarOwnersDriversForm, SitBackAndEarnForm
+from .models import BankAccountInformation, DriverRequest#, SitBackAndEarn
+from .forms import CarOwnersDriversForm#, SitBackAndEarnForm
 
 
 @login_required
