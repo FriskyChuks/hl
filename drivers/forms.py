@@ -1,8 +1,9 @@
 from django import forms
 from bootstrap_datepicker_plus import DatePickerInput
 from django.forms import widgets
+from datetime import datetime
 
-from .models import CarOwnerDriverRegister
+from .models import CarOwnerDriverRegister, SitBackAndEarn
 
 
 # for DateTime input use
@@ -42,6 +43,19 @@ class CarOwnersDriversForm(forms.ModelForm):
             'address': forms.TextInput(attrs={'class': 'form-control'}),           
             
         }
+
+
+class SitBackAndEarnForm(forms.ModelForm):
+    class Meta:
+        model = SitBackAndEarn
+        exclude = ["user","date_created", "updated","status"]
+
+        widgets = {
+            'car_make': forms.TextInput(attrs={'class': 'form-control'}),
+            'model': forms.TextInput(attrs={'class': 'form-control'}),
+            'car_year': forms.NumberInput(attrs={'class': 'form-control'}),                  
+        }
+
 
 
 

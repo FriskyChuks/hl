@@ -44,7 +44,7 @@ def book_a_ride_view(request, service_type_id):
     return render(request, template, context)
 
 
-from django.contrib.auth.decorators import login_required
+@login_required
 def riders_list_view(request):
     pending_riders = Ride.objects.filter(status=1)# Pending riders
     active_riders = Ride.objects.filter(status=3)# Active Riders
@@ -65,6 +65,15 @@ def ride_service_type_detail_view(request, id):
     service = ServiceType.objects.get(id=id)
 
     return render(request, 'riders/ride_service_details.html', {"service":service})
+
+
+def my_rides_view(request, user_id):
+    pending_rides = Ride.objects.filter(rider=user_id, status=1)
+    active_rides = Ride.objects.filter(rider=user_id, status=3)
+
+    template = 'riders/user_rides.html'
+    context = {"pending_rides":pending_rides, "active_rides":active_rides}
+    return render(request, template, context)
 
 
 

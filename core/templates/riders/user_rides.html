@@ -8,9 +8,9 @@
 {% block content %}
     <hr>
   
-    {% include 'riders/snippets/active_rides.html' %}
+    {% include 'riders/snippets/active_rides.html' with active_riders=active_rides %}
     <br>
-    {% include 'riders/snippets/pending_rides.html' %}
+    {% include 'riders/snippets/pending_rides.html' with pending_riders=pending_rides %}
 
 
 {% endblock content %}

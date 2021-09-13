@@ -4,8 +4,8 @@ from django.contrib.auth.decorators import login_required
 
 from accounts.models import User
 
-from .models import BankAccountInformation, DriverRequest
-from .forms import CarOwnersDriversForm
+from .models import BankAccountInformation, DriverRequest, SitBackAndEarn
+from .forms import CarOwnersDriversForm, SitBackAndEarnForm
 
 
 @login_required
@@ -69,6 +69,19 @@ def driver_request_view(request):
         return redirect("/")
     
     return render(request, 'drivers/driver_request.html', {"user":user})
+
+
+@login_required
+def sit_back_and_earn_view(request):
+    form = SitBackAndEarnForm(request.POST or None, request.FILES or None)
+    if form.is_valid():
+        form_obj = form.save(commit=False)
+        form_obj.user=request.user
+        form_obj.save()
+        messages.success(request, 'Thanks for you request, we shall contact you soon!')
+        return redirect("/")
+    
+    return render(request, 'drivers/sit_back_n_earn.html', {"form":form})
 
 
 @login_required

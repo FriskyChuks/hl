@@ -63,8 +63,6 @@ ACCOUNT_TYPE = (
 )
 
 
-
-
 class CarOwnerDriverRegister(models.Model):
     user            = models.OneToOneField(User, on_delete=models.CASCADE, blank=True, null=True)
     # image           = models.ImageField(default='car.png', blank=True)
@@ -121,3 +119,19 @@ class DriverRequest(models.Model):
             return f"{self.user.first_name} {self.user.last_name} || Has a valid Licence"
         else:
             return f"{self.user.first_name} {self.user.last_name} || Does not have a valid Licence"
+
+
+class SitBackAndEarn(models.Model):
+    user            = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
+    car_make	    = models.CharField(max_length=100)
+    model           = models.CharField(max_length=100)
+    car_year        = models.PositiveSmallIntegerField()
+    image           = models.ImageField(null=True, blank=True, upload_to="car_owner/cars/")
+    particulars		= models.ImageField(null=True, blank=True, upload_to="car_owner/particulars/")
+    valid_id 		= models.ImageField(null=True, blank=True, upload_to="car_owner/id_cards/")
+    status 			= models.CharField(max_length=9, default='pending')
+    date_created	= models.DateTimeField(auto_now_add=True, auto_now=False)
+    updated			= models.DateTimeField(auto_now_add=False, auto_now=True)
+
+    def __str__(self):
+        return f"{self.car_make} {self.model} {self.car_year}"

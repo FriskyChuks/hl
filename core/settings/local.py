@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'app',  # Enable the inner app,
 
+    'aboutus',
     'accounts',
     'cars',
     'drivers',
@@ -51,20 +52,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-]
-
-AUTH_PASSWORD_VALIDATORS = [
-    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-        'OPTIONS': {
-            'min_length': 6, }
-     },
-    # {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator', },
-    {'NAME': 'accounts.validators.NumberValidator',
-        'OPTIONS': {
-            'min_digits': 1, }},
-    # {'NAME': 'accounts.validators.UppercaseValidator', },
-    # {'NAME': '.accounts.validators.LowercaseValidator', },
-    # {'NAME': 'accounts.validators.SymbolValidator', },
 ]
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True     # opional, as this will log you out when browser is closed

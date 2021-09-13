@@ -7,31 +7,25 @@
 
 {% block content %}
 
-<!-- <div class="card bg-dark text-white">
-    <img src="{{service.image.url}}" class="card-img" alt="...">
-        <div class="card-img-overlay">
-        <h5 class="card-title">{{service.service_type}}</h5>
-        <p class="card-text">{{service.description}}</p>
-        <p class="card-text">Last updated 3 mins ago</p>
-    </div>
-</div> -->
 
-<div class="card">
-    <!-- <h5 class="card-header">{{service.service_type}}</h5> -->
-    <div class="card-body">
-        <div class="row g-2">
-            <div class="col-md-6">
-                <h5 class="card-title">{{service.service_type}}</h5>
-                <p class="card-text">{{service.description}}</p><br>
-                <a href="{% url 'book_a_ride' service_type_id=service.id %}" class="btn btn-primary">Book Now</a>
+    <div class="card">
+        <!-- <h5 class="card-header">{{service.service_type}}</h5> -->
+        <div class="card-body">
+            <div class="row g-2">
+                <div class="col-md-6">
+                    <h5 class="card-title">{{service.service_type}}</h5>
+                    <p class="card-text">{{service.description}}</p><br>
+                    <a href="{% url 'book_a_ride' service_type_id=service.id %}" class="btn btn-primary">Book Now</a>
+                </div>
+                <div class="col-md-1"></div>
+                <div class="col-md-5">
+                    <img src="{{service.image.url}}" class="card-img" alt="...">
+                </div>
             </div>
-            <div class="col-md-1"></div>
-            <div class="col-md-5">
-                <img src="{{service.image.url}}" class="card-img" alt="...">
-            </div>
+          
         </div>
-      
     </div>
-</div>
+
+
 
 {% endblock content %}

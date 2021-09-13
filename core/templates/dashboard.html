@@ -8,59 +8,65 @@
 {% block content %}
 
 
-    
-    <div class="row">   
-        <!-- from here -->
-        <div class="row g-3">
-            <div class="col-lg-4">
-              <div class="card h-100">
-                <div class="overflow-hidden position-relative border-radius-xl bg-cover h-100" style="background-image: url('/static/assets/img/cars/car.jpg');">
-                  <span class="mask bg-gradient-dark"></span>
-                  <div class="card-body position-relative z-index-1 d-flex flex-column h-100 p-3">
-                    <h5 class="text-white font-weight-bolder mb-4 pt-2">Ride with us on EXECUTIVES</h5>
-                    <p class="text-white">Worth the money; simply amazing</p>
-                    <a class="text-white text-sm font-weight-bold mb-0 icon-move-right mt-auto" href="{% url 'car_class' id=2 %}">
-                      Read More
-                      <i class="fas fa-arrow-right text-sm ms-1" aria-hidden="true"></i>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-4">
-              <div class="card h-100">
-                <div class="overflow-hidden position-relative border-radius-xl bg-cover h-100" style="background-image: url('/static/assets/img/cars/1.jpg');">
-                  <span class="mask bg-gradient-dark"></span>
-                  <div class="card-body position-relative z-index-1 d-flex flex-column h-100 p-3">
-                    <h5 class="text-white font-weight-bolder mb-4 pt-2">Try our LUXURY rides</h5>
-                    <p class="text-white">Comfort could as well be obtained on land.</p>
-                    <a class="text-white text-sm font-weight-bold mb-0 icon-move-right mt-auto" href="{% url 'car_class' id=1 %}">
-                      Read More
-                      <i class="fas fa-arrow-right text-sm ms-1" aria-hidden="true"></i>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-4">
-              <div class="card h-100">
-                <div class="overflow-hidden position-relative border-radius-xl bg-cover h-100" style="background-image: url('/static/assets/img/cars/2.jpg');">
-                  <span class="mask bg-gradient-dark"></span>
-                  <div class="card-body position-relative z-index-1 d-flex flex-column h-100 p-3">
-                    <h5 class="text-white font-weight-bolder mb-4 pt-2">Our COMFORT class is awesome!</h5>
-                    <p class="text-white">You don't need millions to feel good; get comfort for just a little cash</p>
-                    <a class="text-white text-sm font-weight-bold mb-0 icon-move-right mt-auto" href="{% url 'car_class' id=3 %}">
-                      Read More
-                      <i class="fas fa-arrow-right text-sm ms-1" aria-hidden="true"></i>
-                    </a>
-                  </div>
-                </div>
+<div class="container">
+  <div class="row">   
+    <!-- from here -->
+    <div class="row g-3">
+        <div class="col-lg-4">
+          <div class="card h-100">
+            <div class="overflow-hidden position-relative border-radius-xl bg-cover h-100" style="background-image: url('/static/assets/img/cars/car.jpg');">
+              <span class="mask bg-gradient-dark"></span>
+              <div class="card-body position-relative z-index-1 d-flex flex-column h-100 p-3">
+                <h5 class="text-white font-weight-bolder mb-4 pt-2">Ride with us on EXECUTIVES</h5>
+                <p class="text-white">Worth the money; simply amazing</p>
+                <a class="text-white text-sm font-weight-bold mb-0 icon-move-right mt-auto" href="{% url 'car_class' id=2 %}">
+                  Read More
+                  <i class="fas fa-arrow-right text-sm ms-1" aria-hidden="true"></i>
+                </a>
               </div>
             </div>
           </div>
-    </div>
-    <br>
-    {% include 'riders/service_type_template.html' %}
+        </div>
+        <div class="col-lg-4">
+          <div class="card h-100">
+            <div class="overflow-hidden position-relative border-radius-xl bg-cover h-100" style="background-image: url('/static/assets/img/cars/1.jpg');">
+              <span class="mask bg-gradient-dark"></span>
+              <div class="card-body position-relative z-index-1 d-flex flex-column h-100 p-3">
+                <h5 class="text-white font-weight-bolder mb-4 pt-2">Try our LUXURY rides</h5>
+                <p class="text-white">Comfort could as well be obtained on land.</p>
+                <a class="text-white text-sm font-weight-bold mb-0 icon-move-right mt-auto" href="{% url 'car_class' id=1 %}">
+                  Read More
+                  <i class="fas fa-arrow-right text-sm ms-1" aria-hidden="true"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="card h-100">
+            <div class="overflow-hidden position-relative border-radius-xl bg-cover h-100" style="background-image: url('/static/assets/img/cars/2.jpg');">
+              <span class="mask bg-gradient-dark"></span>
+              <div class="card-body position-relative z-index-1 d-flex flex-column h-100 p-3">
+                <h5 class="text-white font-weight-bolder mb-4 pt-2">Our COMFORT class is awesome!</h5>
+                <p class="text-white">You don't need millions to feel good; get comfort for just a little cash</p>
+                <a class="text-white text-sm font-weight-bold mb-0 icon-move-right mt-auto" href="{% url 'car_class' id=3 %}">
+                  Read More
+                  <i class="fas fa-arrow-right text-sm ms-1" aria-hidden="true"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+  <br>
+  <h3>Our Services</h3>
+  <center>
+    {% include 'riders/snippets/service_type_template.html' %}
+  </center>
+</div>    
+    
+    
 
 {% endblock content %}
 

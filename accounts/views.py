@@ -85,6 +85,10 @@ def register_user(request):
     success = False
 
     if request.method == "POST":
+        email = request.POST.get("email")
+        qs = User.objects.filter(email=email)
+        if len(qs) == 1:
+            msg = 'This "EMAIL" has already been assigned to a user'
         form = SignUpForm(request.POST)
         if form.is_valid():
             form.save()
@@ -98,15 +102,17 @@ def register_user(request):
 
         else:
             raw_password = form.cleaned_data.get("password1")
-            li = []
-            for char in raw_password:
-                if char.isdigit():
-                   li.append(char)
-            if len(li) < 1:
-                msg = "Your password must contain at least 1 digit, 0-9."
-            if len(raw_password) < 6:
-                msg = 'password lenght must be greater than 6' 
-                # msg = 'Your password must contain at least 1 digit, 0-9.'   
+            raw_password2 = form.cleaned_data.get("password2")
+            if raw_password != raw_password2:
+                msg = 'Passwords do not match' 
+            if len(raw_password) < 8:
+                msg = 'password lenght must be greater than 7' 
+            # li = []
+            # for char in raw_password:
+            #     if char.isdigit():
+            #        li.append(char)
+            # if len(li) < 1:
+            #     msg = "Your password must contain at least 1 digit, 0-9."   
     else:
         form = SignUpForm()
 
@@ -127,9 +133,6 @@ def account_setting_view(request, user_id):
 
 # class MyPasswordResetDoneView(PasswordResetDoneView):
 #     template_name = 'account/passwords/reset_done.html'
-
-def about_us_view(request):
-    return render(request, 'about_us.html', {})
 
 def logout_view(request):
     logout(request)

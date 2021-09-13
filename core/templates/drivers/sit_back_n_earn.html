@@ -1,0 +1,73 @@
+{% extends "layouts/base.html" %}
+{% block title %} Bank Details {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+<hr>
+<br>
+
+<div class="container">
+<form method="POST" class="row g-3" enctype="multipart/form-data">{% csrf_token %}
+    <h4>Request to be our Driver</h4>
+    <div class="col-md-4">
+      <label for="validationDefault01" class="form-label">First name</label>
+      <input type="text" class="form-control" id="validationDefault01" value="{{ user.first_name }}" required>
+    </div>
+    <div class="col-md-4">
+      <label for="validationDefault02" class="form-label">Last name</label>
+      <input type="text" class="form-control" id="validationDefault02" value="{{ user.last_name }}" required>
+    </div>
+    <div class="col-md-4">
+      <label for="validationDefaultUsername" class="form-label">Email/Username</label>
+      <div class="input-group">
+        <span class="input-group-text" id="inputGroupPrepend2">@</span>
+        <input type="text" class="form-control" id="validationDefaultUsername" value="{{ user.email }}"  aria-describedby="inputGroupPrepend2" required>
+      </div>
+    </div>
+    <!-- <div class="col-md-4">
+        <label for="validationDefault04" class="form-label">What's the Make of the Car</label>
+        <select class="form-select" id="validationDefault04" name="car_make" required>
+            <option selected disabled value="">Choose...</option>
+            <option value="1">Toyota</option>
+            <option value="2">Honda</option>
+        </select>
+    </div> -->
+    <div class="col-md-4">
+      <label for="validationDefault02" class="form-label">What's the Make of the Car (Brand)</label>
+      {{ form.car_make }}
+    </div>
+    <div class="col-md-4">
+        <label for="validationDefault02" class="form-label">Model</label>
+        {{ form.model }}
+      </div>
+    <div class="col-md-4">
+        <label for="validationDefault02" class="form-label">Year</label>
+        {{form.car_year}}
+    </div>
+    <br>
+    <h5>Upload Images</h5>
+    <div class="col-md-4">
+      <label for="validationDefault02" class="form-label">Picture of the Car</label>
+      {{form.image}}
+    </div>
+    <div class="col-md-4">
+        <label for="validationDefault02" class="form-label">Car Particulars</label>
+        {{form.particulars}}
+    </div>
+    <div class="col-md-4">
+        <label for="validationDefault02" class="form-label">Valid I.D. Card</label>
+        {{form.valid_id}}
+    </div>
+    <div class="col-md-6">
+      <label for="validationDefault03" class="form-label">Comments</label>
+      <textarea name="comments" id="validationDefault03" class="form-control" cols="30" rows="6" required>Comments</textarea>
+    </div>
+    <div class="col-12">
+      <button class="btn btn-success" type="submit">Submit Request</button>
+    </div>
+  </form>
+</div>
+
+{% endblock content %}
