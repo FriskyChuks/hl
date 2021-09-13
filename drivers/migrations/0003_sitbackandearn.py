@@ -19,7 +19,6 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('car_make', models.BooleanField(default=False)),
                 ('car_brand', models.DateField()),
-                ('car_year', models.DateField()),
                 ('image', models.ImageField(blank=True, null=True, upload_to='car_owner/cars/')),
                 ('particulars', models.ImageField(blank=True, null=True, upload_to='car_owner/particulars/')),
                 ('valid_id', models.ImageField(blank=True, null=True, upload_to='car_owner/id_cards/')),
