@@ -3,7 +3,7 @@ from bootstrap_datepicker_plus import DatePickerInput
 from django.forms import widgets
 from datetime import datetime
 
-from .models import CarOwnerDriverRegister, SitBackAndEarn
+from .models import CarOwnerDriverRegister#, SitBackAndEarn
 
 
 # for DateTime input use
