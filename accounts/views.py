@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
 from riders.models import ServiceType
-from drivers.models import CarOwnerDriverRegister, BankAccountInformation
+from driver.models import CarOwnerDriverRegister, BankAccountInformation
 from cars.models import Car
 
 from .models import User

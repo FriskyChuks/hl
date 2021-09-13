@@ -14,7 +14,7 @@ urlpatterns = [
     path("", include("accounts.urls")),
     path('accounts/', include('accounts.password.urls')), # Passwords
     path("cars/", include("cars.urls")), 
-    path("driverss/", include("drivers.urls")),           # Cars route
+    path("driver/", include("driver.urls")),           # Cars route
     path("riders/", include("riders.urls")),
     path("about_us/", include("aboutus.urls"))
     # path("app", include("app.urls"))             # UI Kits Html files

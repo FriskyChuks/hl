@@ -37,7 +37,7 @@ INSTALLED_APPS = [
 
     'accounts',
     'cars',
-    'drivers',
+    'driver',
     'riders',
 ]
 
