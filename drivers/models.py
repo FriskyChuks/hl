@@ -125,7 +125,7 @@ class SitBackAndEarn(models.Model):
     user            = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
     car_make	    = models.CharField(max_length=100)
     model           = models.CharField(max_length=100)
-    car_year        = models.PositiveSmallIntegerField()
+    car_year        = models.CharField()
     image           = models.ImageField(null=True, blank=True, upload_to="car_owner/cars/")
     particulars		= models.ImageField(null=True, blank=True, upload_to="car_owner/particulars/")
     valid_id 		= models.ImageField(null=True, blank=True, upload_to="car_owner/id_cards/")
