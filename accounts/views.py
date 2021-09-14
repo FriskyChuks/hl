@@ -48,6 +48,7 @@ def login_view(request):
                         return redirect("bank_account_info", user_id=user.id)
                     else:
                         if "next" in request.POST:
+                            messages.info(request, 'Please login to continue')
                             return redirect(request.POST.get('next'))
                         else:
                             return redirect("/")

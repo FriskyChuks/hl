@@ -7,16 +7,13 @@ from django.contrib.auth.decorators import login_required
 
 from accounts.models import User
 
-from .models import Car, RideServiceClass
+from .models import Car, RideServiceClass, VehicleMaintenance
+from .forms import VehicleMaintenanceForm
 
 
 def car_class_view(request, id):
     car_class = Car.objects.filter(service_class_id=id,active=True)
-    # car_executive = RideServiceClass.objects.get(id=1)
-    # car_luxury = RideServiceClass.objects.get(service_class=2,active=True)
-    # car_comfort = RideServiceClass.objects.get(service_class=3,active=True)
-    print("class is:")
-
+ 
     template = 'cars/service_class_list.html'
     context = {"car_class":car_class}
     return render(request, template, context)
@@ -36,4 +33,22 @@ def car_detail_view(request, id):
     return render(request, template, context)
 
 
+@login_required
+def vehicle_maintenance_view(request):
+    form = VehicleMaintenanceForm(request.POST or None)
+    if form.is_valid():
+        instance = form.save(commit=False)
+        instance.user = request.user
+        instance.save()
+        messages.success(request, "Maintenance record saved successfully!")
+        return redirect("/cars/maintenance")
 
+    return render(request, 'cars/maintenance.html', {"form":form})
+
+@login_required
+def maintenance_report_view(request, user_id):
+    all_maintenance = VehicleMaintenance.objects.all()
+    user_maintenance = VehicleMaintenance.objects.filter(user=user_id)
+
+    context = {"all_maintenance":all_maintenance, "user_maintenance":user_maintenance}
+    return render(request, 'cars/maintenance_report.html', context)

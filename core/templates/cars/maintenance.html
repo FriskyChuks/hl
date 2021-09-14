@@ -1,0 +1,53 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Maintenance {% endblock %} 
+
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+<hr>
+<div class="container">
+    <form method="POST" class="row g-3">{% csrf_token %}
+        <h4>Vehicle Maintenace</h4>
+        <div class="col-md-4">
+          <label for="validationDefault01" class="form-label">First name</label>
+          <input type="text" class="form-control" id="validationDefault01" value="{{ user.first_name }}" readonly>
+        </div>
+        <div class="col-md-4">
+          <label for="validationDefault02" class="form-label">Last name</label>
+          <input type="text" class="form-control" id="validationDefault02" value="{{ user.last_name }}" readonly>
+        </div>
+        <div class="col-md-4">
+          <label for="validationDefaultUsername" class="form-label">Email/Username</label>
+          <div class="input-group">
+            <span class="input-group-text" id="inputGroupPrepend2">@</span>
+            <input type="text" class="form-control" id="validationDefaultUsername" value="{{ user.email }}"  aria-describedby="inputGroupPrepend2" readonly>
+          </div>
+        </div>
+        <div class="col-md-4">
+            <label for="validationDefault02" class="form-label">Vehicle Maintained</label>
+            {{ form.car }}
+          </div>
+          <div class="col-md-4">
+              <label for="validationDefault02" class="form-label">Type of Maintenance done</label>
+              {{ form.type }}
+            </div>
+          <div class="col-md-4">
+              <label for="validationDefault02" class="form-label">Date of Maintenace</label>
+              {{form.date_maintained}}
+          </div>
+          <div class="col-md-4">
+            <label for="validationDefault02" class="form-label">Amount Spent</label>
+            {{form.amount_spent}}
+          </div>
+          <div class="col-md-4">
+              <label for="validationDefault02" class="form-label">Description</label>
+              {{form.description}}
+          </div>
+          
+          <div class="col-12">
+            <button class="btn btn-success" type="submit">Save Record</button>
+          </div>
+      </form>
+    </div>
+{% endblock content %}

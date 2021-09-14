@@ -3,6 +3,11 @@ from django.utils import timezone
 
 from accounts.models import User
 
+MAINTENANCE_TYPE = (
+    ('routine','Routine'),
+    ('others','Others'),
+)
+
 
 class RideServiceClass(models.Model):
     service_class = models.CharField(max_length=20)
@@ -46,5 +51,19 @@ class CarReservation(models.Model):
     check_out = models.DateField()
     car = models.ForeignKey(Car, on_delete = models.CASCADE)
     rider = models.ForeignKey(User, on_delete= models.CASCADE)
+
+
+class VehicleMaintenance(models.Model):
+    car             = models.ForeignKey(Car, on_delete=models.CASCADE)
+    user            = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
+    type            = models.CharField(max_length=20, choices=MAINTENANCE_TYPE)
+    date_maintained = models.DateField()
+    amount_spent    = models.DecimalField(max_digits=65, decimal_places=2, default=00.00)
+    description     = models.TextField(max_length=500)
+    date_created    = models.DateTimeField(auto_now_add=True, auto_now=False)
+
+    def __str__(self):
+        return f"{self.car}; Amount Spent: {self.amount_spent}"
+
 
 

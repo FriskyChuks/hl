@@ -1,0 +1,15 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Maintenance {% endblock %} 
+
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+    {% if request.user.group.name == 'admin' %}
+        {% include 'cars/snippet/temp.html' with maintenance=all_maintenance %}
+    {% else %}
+        {% include 'cars/snippet/temp.html' with maintenance=user_maintenance %}
+    {% endif %}
+
+
+{% endblock content %}
