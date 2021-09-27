@@ -1,4 +1,4 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, HttpResponseRedirect
 # import geoip2.database
 from geopy.geocoders import Nominatim
 from geopy.distance import geodesic
@@ -6,6 +6,7 @@ import folium
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 import datetime
+import json
 
 from accounts.models import User
 from .models import Ride, ServiceType
@@ -13,11 +14,11 @@ from .forms import BookRideForm
 from .utils import get_geo, get_center_coordinates, get_zoom, get_ip_address
 
 
-@login_required
+# @login_required
 def book_a_ride_view(request, service_type_id):
     service = ServiceType.objects.get(id=service_type_id)
     user_id = request.user.id
-
+    
     if request.method == 'POST':
         pickup_address = request.POST.get('pickup_address')
         destination=request.POST.get('destination')
@@ -25,6 +26,13 @@ def book_a_ride_view(request, service_type_id):
         ride_date = request.POST.get('ride_date')
         ride_time = request.POST.get('ride_time')
         comments = request.POST.get('comments')
+        # request.session['pickup_address'] = pickup_address
+        # request.session['destination'] = destination
+        # request.session['service_class'] = service_class
+        # request.session['ride_date'] = ride_date
+        # request.session['ride_time'] = ride_time
+        # request.session['comments'] = comments
+        # print(request.session['pickup_address'])
         form_obj = Ride.objects.create(
             rider_id = user_id,
             pickup_address = pickup_address,
@@ -38,6 +46,13 @@ def book_a_ride_view(request, service_type_id):
         form_obj.save()
         messages.success(request, 'Your booking was successful')
         return redirect('/')
+        # if not request.user.is_authenticated:
+        #     messages.info(request, 'Please kindly login to continue')
+        #     return HttpResponseRedirect('/login/?next=%s' % request.path)
+        # else:
+        #     form_obj.save()
+        #     messages.success(request, 'Your booking was successful')
+        #     return redirect('/')
    
     template = 'riders/book_ride.html'
     context = {"service":service}

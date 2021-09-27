@@ -125,13 +125,15 @@
           {{ form.gender }}
           <label for="floatingInput">Gender</label>
         </div>
+        {% if msg1 %}
         <h6 style="text-align: left;">Hints:</h6>
         <ol>
-          <li>Length must be greater than 7</li>
-          <li>Do not use the word "PASSWORD"</li>
-          <li>Do not use your names for password</li>
-          <li>Do not use NUMBERS (0-9) alone</li>
+          <li>{{msg1}}</li>
+          <li>{{msg2}}</li>
+          <li>{{msg3}}</li>
+          <li>{{msg4}}</li>
         </ol>
+        {% endif %}
         <div class="form-floating">
           {{ form.password1 }}
           <label for="floatingPassword">Password</label>

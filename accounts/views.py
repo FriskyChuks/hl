@@ -81,43 +81,45 @@ def login_view(request):
 
 
 def register_user(request):
-
-    msg     = None
-    success = False
+    msg  = None
+    msg1 = ""
+    msg2 = ""
+    msg3 = ""
+    msg4 = ""
 
     if request.method == "POST":
         email = request.POST.get("email")
         qs = User.objects.filter(email=email)
         if len(qs) == 1:
             msg = 'This "EMAIL" has already been assigned to a user'
-        form = SignUpForm(request.POST)
-        if form.is_valid():
-            form.save()
-            email = form.cleaned_data.get("email")
-            raw_password = form.cleaned_data.get("password1")
-            user = authenticate(email=email, password=raw_password)
-
-            messages.success(request, "User created successfully! - please login to continue")
-            
-            return redirect("/login")
-
         else:
-            raw_password = form.cleaned_data.get("password1")
-            raw_password2 = form.cleaned_data.get("password2")
-            if raw_password != raw_password2:
-                msg = 'Passwords do not match' 
-            if len(raw_password) < 8:
-                msg = 'password lenght must be greater than 7' 
-            # li = []
-            # for char in raw_password:
-            #     if char.isdigit():
-            #        li.append(char)
-            # if len(li) < 1:
-            #     msg = "Your password must contain at least 1 digit, 0-9."   
+            form = SignUpForm(request.POST)
+            if form.is_valid():
+                form.save()
+                email = form.cleaned_data.get("email")
+                raw_password = form.cleaned_data.get("password1")
+                user = authenticate(email=email, password=raw_password)
+
+                messages.success(request, "User created successfully! - please login to continue")
+                
+                return redirect("/login")
+
+            else:
+                raw_password = form.cleaned_data.get("password1")
+                raw_password2 = form.cleaned_data.get("password2")
+                if raw_password != raw_password2:
+                    msg = 'Passwords do not match' 
+                if len(raw_password) < 8:
+                    msg = 'password lenght must be greater than 7' 
+                    msg1 = 'Length must be greater than 7'
+                    msg2 = 'Do not use the word "PASSWORD"'
+                    msg3 = 'Do not use your names for password'
+                    msg4 = 'Do not use NUMBERS (0-9) alone'   
     else:
         form = SignUpForm()
 
-    return render(request, "account/register.html", {"form": form, "msg" : msg, "success" : success })
+    context = {"form": form, "msg" : msg, "msg1" : msg1, "msg2":msg2, "msg3":msg3, "msg4":msg4 }
+    return render(request, "account/register.html", context)
 
 
 @login_required

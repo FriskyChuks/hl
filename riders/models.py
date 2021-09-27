@@ -44,6 +44,6 @@ class Ride(models.Model):
     date_created    = models.DateTimeField(auto_now_add=True, auto_now=False)
     updated         = models.DateTimeField(auto_now_add=False, auto_now=True)
 
-    def __str__(self):
-        return f"{self.rider.first_name} {self.rider.last_name}"
+    # def __str__(self):
+    #     return f"{self.rider.first_name} {self.rider.last_name}"
 
